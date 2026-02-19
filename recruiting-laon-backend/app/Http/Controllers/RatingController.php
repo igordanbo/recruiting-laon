@@ -16,19 +16,21 @@ class RatingController extends Controller
         ], 200);
     }
 
-    public function store(RatingRequest $request)
+    public function store(RatingRequest $request, $id_film)
     {
-        $film = Film::findOrFail($request->film_id);
+        $film = Film::findOrFail($id_film);
 
-        $rating = $film->ratings()->create([
-            'source' => $request->source,
-            'rating' => $request->rating,
-        ]);
+        $rating = $film->ratings()->create(
+            $request->validated()
+        );
 
-        return response()->json($rating, 201);
+        return response()->json([
+            'rating' => $rating,
+            'film' => $film
+        ], 201);
     }
 
-    public function update(RatingRequest $request, $id_rating, $id_film)
+    public function update(RatingRequest $request, $id_film, $id_rating)
     {
         $film = Film::findOrFail($id_film);
         $rating = $film->ratings()->findOrFail($id_rating);
@@ -38,7 +40,7 @@ class RatingController extends Controller
         return response()->json($rating, 200);
     }
 
-    public function destroy($id_rating, $id_film)
+    public function destroy($id_film, $id_rating)
     {
         $film = Film::findOrFail($id_film);
         $rating = $film->ratings()->findOrFail($id_rating);
