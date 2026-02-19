@@ -27,7 +27,6 @@ class FilmRequest extends FormRequest
             'year' => 'required|integer|digits:4|min:1888|max:' . date('Y'),
             'duration' => 'required|integer|min:1|max:500',
             'synopsis' => 'required|string|min:10',
-            'awards' => 'nullable|string',
             'director' => 'required|string|max:255|min:3',
         ];
     }
@@ -40,6 +39,8 @@ class FilmRequest extends FormRequest
             'title.max' => 'O título deve ter no máximo 255 caracteres.',
 
             'original_title.required' => 'O título original é obrigatório.',
+            'original_title.min' => 'O título original deve ter no mínimo 3 caracteres.',
+            'original_title.max' => 'O título original deve ter no máximo 255 caracteres.',
 
             'year.required' => 'O ano é obrigatório.',
             'year.integer' => 'O ano deve ser um número inteiro.',

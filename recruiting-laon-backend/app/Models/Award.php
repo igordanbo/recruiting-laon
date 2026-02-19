@@ -4,11 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Rating extends Model
+class Award extends Model
 {
     protected $fillable = [
-        'source',
-        'rating',
+        'title',
     ];
 
     public function film()

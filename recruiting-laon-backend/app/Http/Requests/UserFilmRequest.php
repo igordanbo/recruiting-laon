@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class FilmCategoryRequest extends FormRequest
+class UserFilmRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,7 +23,7 @@ class FilmCategoryRequest extends FormRequest
     {
         return [
             'film_id' => 'required|exists:films,id',
-            'category_id' => 'required|exists:categories,id',
+            'user_id' => 'required|exists:users,id',
         ];
     }
 
@@ -33,8 +33,8 @@ class FilmCategoryRequest extends FormRequest
             'film_id.required' => 'O ID do filme é obrigatório.',
             'film_id.exists' => 'O filme especificado não existe.',
 
-            'category_id.required' => 'O ID da categoria é obrigatório.',
-            'category_id.exists' => 'A categoria especificada não existe.',
+            'user_id.required' => 'O ID do usuário é obrigatório.',
+            'user_id.exists' => 'O usuário especificado não existe.',
         ];
     }
 }

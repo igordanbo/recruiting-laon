@@ -22,8 +22,6 @@ class RatingRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'film_id' => 'required|exists:films,id',
-
             'source' => 'required|string|max:50|min:2',
 
             'rating' => 'required|numeric|min:0|max:100',
@@ -33,9 +31,6 @@ class RatingRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'film_id.required' => 'O filme é obrigatório.',
-            'film_id.exists' => 'O filme informado não existe.',
-
             'source.required' => 'A fonte da avaliação é obrigatória.',
             'source.max' => 'A fonte deve ter no máximo 50 caracteres.',
             'source.min' => 'A fonte deve ter no mínimo 2 caracteres.',

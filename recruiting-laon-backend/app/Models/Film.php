@@ -12,13 +12,18 @@ class Film extends Model
         'year',
         'duration',
         'synopsis',
-        'cast',
         'awards',
+        'director'
     ];
 
     public function categories()
     {
         return $this->belongsToMany(Category::class);
+    }
+
+    public function actors()
+    {
+        return $this->belongsToMany(Actor::class);
     }
 
     public function users()
@@ -29,5 +34,10 @@ class Film extends Model
     public function ratings()
     {
         return $this->hasMany(Rating::class);
+    }
+
+    public function awards()
+    {
+        return $this->hasMany(Award::class);
     }
 }
