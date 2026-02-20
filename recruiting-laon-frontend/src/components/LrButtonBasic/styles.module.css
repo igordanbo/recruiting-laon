@@ -1,0 +1,26 @@
+.lr_button_basic {
+  border: none;
+  outline: none;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0 0;
+
+  background-color: transparent;
+  
+  max-width: max-content;
+
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 20px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--white);
+}
+
+.lr_button_basic:hover {
+  opacity: 0.4;
+}

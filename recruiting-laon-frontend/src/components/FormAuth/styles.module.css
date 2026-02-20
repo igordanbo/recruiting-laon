@@ -1,0 +1,28 @@
+.form_auth {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  gap: 32px;
+
+  width: 100%;
+  max-width: 588px;
+
+  border-radius: 8px;
+  border: none;
+
+  background: var(--gray-200);
+  padding: 48px 64px;
+}
+
+.form_auth_header{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form_auth_main{
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
