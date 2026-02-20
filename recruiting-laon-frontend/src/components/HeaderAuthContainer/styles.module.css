@@ -1,0 +1,9 @@
+.header_container {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 24px 0px;
+  height: 96px;
+  width: 100%;
+  border-bottom: 1px solid var(--gray-300);
+}

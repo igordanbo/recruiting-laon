@@ -1,0 +1,38 @@
+.header_container {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 24px 0px;
+  height: 96px;
+  width: 100%;
+  border-bottom: 1px solid var(--gray-300);
+}
+
+.header_catalog_options {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+svg {
+  cursor: pointer;
+}
+
+svg:hover {
+  opacity: 0.4 !important;
+}
+
+.header_catalog_initial_letter {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: var(--gray-400);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gray-100);
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 100%;
+  text-transform: uppercase;
+}
