@@ -1,0 +1,16 @@
+.main_container_single_film {
+  display: flex;
+  gap: 96px;
+
+  width: 100%;
+  max-width: 1200px;
+  padding: 0 24px;
+
+}
+
+@media (max-width: 1000px) {
+  .main_container_single_film {
+    flex-direction: column;
+    padding: 0;
+  }
+}

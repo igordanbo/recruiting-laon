@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class Film extends Model
 {
@@ -13,8 +14,13 @@ class Film extends Model
         'duration',
         'synopsis',
         'awards',
-        'director'
+        'director',
+        'image',
+        'trailer_url',
+        'status'
     ];
+
+    protected $appends = ['image_url'];
 
     public function categories()
     {
@@ -33,11 +39,18 @@ class Film extends Model
 
     public function ratings()
     {
-        return $this->hasMany(Rating::class);
+        return $this->hasMany(RatingsFilms::class);
     }
 
     public function awards()
     {
-        return $this->hasMany(Award::class);
+        return $this->hasMany(AwardsFilms::class);
+    }
+
+    public function getImageUrlAttribute()
+    {
+        return $this->image
+            ? Storage::url($this->image)
+            : null;
     }
 }

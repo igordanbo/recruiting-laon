@@ -1,5 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 
+html {
+  margin: 0;
+  width: 100%;
+  background: var(--gray-100);
+}
+
 h1,
 h2,
 h3,
@@ -38,6 +44,9 @@ span {
   --informational: #5f3ee4;
 
   --gray-100: #1f1d2f;
+  --gray-100-60: #1f1d2f60;
+  --gray-100-40: #1f1d2f40;
+  --gray-100-00: #1f1d2f00;
   --gray-200: #282639;
   --gray-300: #48465b;
   --gray-400: #636177;
@@ -72,6 +81,12 @@ span {
 .lr_regular_16 {
   font-weight: 400;
   font-size: 16px;
+  line-height: 24px;
+}
+
+.lr_regular_14 {
+  font-weight: 400;
+  font-size: 20px;
   line-height: 24px;
 }
 

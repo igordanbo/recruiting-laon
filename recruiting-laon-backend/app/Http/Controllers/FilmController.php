@@ -4,30 +4,52 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\FilmRequest;
 use App\Models\Film;
+use Illuminate\Http\Request;
+
 
 class FilmController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $films = Film::with(['categories', 'ratings'])
-            ->orderBy('created_at', 'desc')
-            ->paginate(10);
+        $query = Film::with(['categories', 'ratings', 'awards', 'actors']);
+
+        if ($request->filled('search')) {
+            $query->where('title', 'like', '%' . $request->search . '%');
+        }
+
+        if ($request->filled('category')) {
+            $query->whereHas('categories', function ($query) use ($request) {
+                $query->where('categories.id', $request->category);
+            });
+        }
+
+        if ($request->filled('status')) {
+            $query->where('status', $request->status);
+        }
+
+        $films = $query
+            ->paginate(6)
+            ->withQueryString();
 
         return response()->json($films);
     }
 
     public function show($id_film)
     {
-        $film = Film::findOrFail($id_film);
+        $film = Film::with(['categories', 'ratings', 'awards', 'actors'])
+            ->findOrFail($id_film);
 
-        return response()->json([
-            'film' => $film
-        ], 200);
+        return response()->json($film, 200);
     }
 
     public function store(FilmRequest $request)
     {
         $data = $request->validated();
+
+        if ($request->hasFile('image')) {
+            $data['image'] = $request->file('image')
+                ->store('films', 'public');
+        }
 
         $film = Film::create($data);
 
@@ -41,7 +63,12 @@ class FilmController extends Controller
     {
         $film = Film::findOrFail($id_film);
 
-        $data = $request->validate();
+        $data = $request->validated();
+
+        if ($request->hasFile('image')) {
+            $data['image'] = $request->file('image')
+                ->store('films', 'public');
+        }
 
         $film->update($data);
 

@@ -1,4 +1,6 @@
-export default function SvgLogo({ size = "medium" }) {
+import { useNavigate } from "react-router-dom";
+
+export default function SvgLogo({ size = "medium", onClick }) {
   const sizes = {
     small: { width: 132, height: 40 },
     medium: { width: 264, height: 80 },
@@ -9,13 +11,14 @@ export default function SvgLogo({ size = "medium" }) {
 
   return (
     <svg
+      onClick={onClick}
       width={width}
       height={height}
       viewBox="0 0 132 40"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <g clip-path="url(#clip0_13_295)">
+      <g clipPath="url(#clip0_13_295)">
         <path
           d="M12.0967 3H8.07758L16.3259 19.557L12.2018 28.1925H17.0615C17.7838 28.1925 18.4537 27.7748 18.7689 27.1012L21.6716 21.0119C22.105 20.0958 22.105 19.0181 21.6453 18.102L15.0388 4.85912C14.4871 3.71401 13.3444 3 12.0967 3Z"
           fill="url(#paint0_linear_13_295)"
@@ -94,8 +97,8 @@ export default function SvgLogo({ size = "medium" }) {
           y2="18.4459"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="white" />
-          <stop offset="0.9997" stop-color="#E3F2F7" />
+          <stop stopColor="white" />
+          <stop offset="0.9997" stopColor="#E3F2F7" />
         </linearGradient>
         <linearGradient
           id="paint1_linear_13_295"
@@ -105,9 +108,9 @@ export default function SvgLogo({ size = "medium" }) {
           y2="20.2939"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="white" />
-          <stop offset="0.477083" stop-color="white" stop-opacity="0.4494" />
-          <stop offset="1" stop-color="#EDFBFF" />
+          <stop stopColor="white" />
+          <stop offset="0.477083" stopColor="white" stopOpacity="0.4494" />
+          <stop offset="1" stopColor="#EDFBFF" />
         </linearGradient>
         <linearGradient
           id="paint2_linear_13_295"
@@ -117,8 +120,8 @@ export default function SvgLogo({ size = "medium" }) {
           y2="16.982"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="white" />
-          <stop offset="1" stop-color="#E3F2F6" />
+          <stop stopColor="white" />
+          <stop offset="1" stopColor="#E3F2F6" />
         </linearGradient>
         <clipPath id="clip0_13_295">
           <rect

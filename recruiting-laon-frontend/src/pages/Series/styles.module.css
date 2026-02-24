@@ -1,0 +1,103 @@
+.search_container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 32px;
+  padding: 0 24px;
+}
+
+.search_title {
+  margin-top: 0;
+  margin-bottom: 0 !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+}
+
+.tumb_film_card {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  width: 100%;
+  height: 300px;
+}
+
+.tumb_film_card img {
+  transition:
+    filter 0.3s ease,
+    transform 0.3s ease;
+
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.tumb_film_card:hover .film_info_hover {
+  display: flex;
+}
+
+.tumb_film_card:hover img {
+  filter: blur(4px) brightness(0.7);
+  transform: scale(1.05);
+}
+
+.film_info_hover {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 16px;
+  position: absolute;
+  top: 50%;
+  left: calc(50% - 50px);
+  max-width: 100px;
+  min-width: 100px;
+  color: var(--white);
+}
+
+.film_name {
+  font-weight: 600;
+  line-height: 16px;
+}
+
+.film_play_badge {
+  border: solid 1px var(--gray-400);
+  font-size: 14px;
+  padding: 1px 10px;
+  border-radius: 100px;
+}
+
+.search_input_container {
+  width: 100%;
+  background: none;
+  outline: none;
+  border: none;
+  border-bottom: solid 1px var(--gray-400);
+  color: #fff;
+  padding-bottom: 5px;
+}
+
+.search_input_container::placeholder {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  color: var(--gray-500);
+}
+
+.search_input_container:focus {
+  border-bottom: 1px solid var(--primary-color);
+}
+
+.search_input_container:-webkit-autofill,
+.search_input_container:-webkit-autofill:hover,
+.search_input_container:-webkit-autofill:focus,
+.search_input_container:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 1000px transparent inset !important;
+  -webkit-text-fill-color: var(--gray-500) !important;
+  transition: background-color 9999s ease-in-out 0s;
+}

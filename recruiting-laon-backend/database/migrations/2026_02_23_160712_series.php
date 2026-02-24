@@ -11,10 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('awards', function (Blueprint $table) {
+        Schema::create('series', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('film_id')->constrained()->onDelete('cascade');
             $table->string('title');
+            $table->string('original_title');
+            $table->year('year');
+            $table->text('synopsis');
+            $table->string('director');
+            $table->string('image')->nullable();
+            $table->string('trailer_url')->nullable();
+            $table->enum('status', ['released', 'upcoming'])->default('released');
             $table->timestamps();
         });
     }
@@ -24,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('awards');
+        Schema::dropIfExists('series');
     }
 };

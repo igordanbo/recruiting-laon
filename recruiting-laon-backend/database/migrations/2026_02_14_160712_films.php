@@ -16,9 +16,12 @@ return new class extends Migration
             $table->string('title');
             $table->string('original_title');
             $table->year('year');
-            $table->integer('duration');
+            $table->unsignedSmallInteger('duration');
             $table->text('synopsis');
             $table->string('director');
+            $table->string('image')->nullable();
+            $table->string('trailer_url')->nullable();
+            $table->enum('status', ['released', 'upcoming'])->default('released');
             $table->timestamps();
         });
     }

@@ -12,8 +12,15 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 
 import Catalog from "./pages/Catalog";
+import Search from "./pages/Search";
+
+import SingleFilm from "./pages/SingleFilm";
 
 import Page404 from "./pages/Page404";
+import TemplateFilm from "./templates/TemplateFilm";
+import Films from "./pages/Films";
+import Series from "./pages/Series";
+import SingleSerie from "./pages/SingleSerie";
 
 function App() {
   return (
@@ -32,6 +39,17 @@ function App() {
 
           <Route path="/catalogo" element={<TemplateCatalog />}>
             <Route index element={<Catalog />} />
+            <Route path="busca" element={<Search />} />
+            <Route path="filmes" element={<Films />} />
+            <Route path="series" element={<Series />} />
+          </Route>
+
+          <Route path="/filmes" element={<TemplateFilm />}>
+            <Route path="filme/:id" element={<SingleFilm />} />
+          </Route>
+
+          <Route path="/series" element={<TemplateFilm />}>
+            <Route path="serie/:id" element={<SingleSerie />} />
           </Route>
 
           <Route path="*" element={<Page404 />} />

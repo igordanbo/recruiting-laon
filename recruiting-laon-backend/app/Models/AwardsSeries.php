@@ -4,14 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Award extends Model
+class AwardsSeries extends Model
 {
     protected $fillable = [
         'title',
     ];
 
-    public function film()
+    public function serie()
     {
-        return $this->belongsTo(Film::class);
+        return $this->belongsTo(Serie::class);
     }
 }

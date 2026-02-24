@@ -4,15 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Rating extends Model
+class RatingsSeries extends Model
 {
     protected $fillable = [
         'source',
         'rating',
     ];
 
-    public function film()
+    public function serie()
     {
-        return $this->belongsTo(Film::class);
+        return $this->belongsTo(Serie::class);
     }
 }
