@@ -79,15 +79,13 @@ export default function Catalog() {
   };
 
   useEffect(() => {
-    fetchFilms();
-    fetchSeries();
-    fetchFilteredFilms();
-  }, []);
-
-  useEffect(() => {
     if (window.innerWidth < 1000) {
       setIsMobile(true);
     }
+
+    fetchFilms();
+    fetchSeries();
+    fetchFilteredFilms();
   }, []);
 
   if (loading) {
@@ -111,7 +109,7 @@ export default function Catalog() {
       ) : (
         <ContainerGrid
           films={films}
-          variant = "films"
+          variant="films"
           description="Filmes"
           disablePrev={true}
           onClickNext={() => {
@@ -128,7 +126,7 @@ export default function Catalog() {
       ) : (
         <ContainerGrid
           films={series}
-          variant = "series"
+          variant="series"
           description="Série"
           disablePrev={true}
           onClickNext={() => {

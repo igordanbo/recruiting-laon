@@ -18,7 +18,7 @@ export default function Home() {
         </h1>
 
         <LrLinkPrimary to="/cadastrar" text="Cadastrar" />
-        <LrLinkSecondary to="/entrar" text="Login" />
+        <LrLinkSecondary to="/entrar" text="Entrar" />
       </div>
     </section>
   );

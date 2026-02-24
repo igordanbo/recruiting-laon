@@ -1,11 +1,18 @@
 import styles from "./styles.module.css";
 
-export default function LrButtonBasic({ onClick, title, text }) {
+export default function LrButtonBasic({
+  className,
+  type,
+  onClick,
+  title,
+  text,
+}) {
   return (
     <button
       onClick={onClick}
       title={title}
-      className={`width_100 ${styles.lr_button_basic}`}
+      type={type}
+      className={`width_100 ${styles.lr_button_basic} ${className}`}
     >
       {text}
     </button>

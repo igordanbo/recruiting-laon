@@ -1,13 +1,14 @@
 import FormAuth from "../../components/FormAuth";
 import LrButtonPrimary from "../../components/LrButtonPrimary";
 import LrInputText from "../../components/LrInputText";
+import LrButtonBasic from "../../components/LrButtonBasic";
 import LrInputPassword from "../../components/LrInputPassword";
 import api from "../../utils/api";
 import { toast } from "react-toastify";
 import { useState } from "react";
 import { validateEmail } from "../../validators/email.validator";
 import { validatePassword } from "../../validators/password.validator";
-import { data, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
   const [dataLogin, setDataLogin] = useState({
@@ -128,6 +129,14 @@ export default function Login() {
       <LrButtonPrimary
         text={loading ? "Entrando..." : "Entrar"}
         disabled={loading}
+        type="submit"
+      />
+
+      <LrButtonBasic
+        className="width_100"
+        text={"Cadastrar"}
+        type="button"
+        onClick={() => navigate("/cadastrar")}
       />
     </FormAuth>
   );

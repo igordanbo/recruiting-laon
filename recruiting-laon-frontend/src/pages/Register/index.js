@@ -9,6 +9,7 @@ import { validateEmail } from "../../validators/email.validator";
 import { validateName } from "../../validators/name.validator";
 import { validatePassword } from "../../validators/password.validator";
 import { useNavigate } from "react-router-dom";
+import LrButtonBasic from "../../components/LrButtonBasic";
 
 export default function Register() {
   const [dataRegister, setDataRegister] = useState({
@@ -145,6 +146,14 @@ export default function Register() {
       <LrButtonPrimary
         text={loading ? "Cadastrando..." : "Cadastrar"}
         disabled={loading}
+        type="submit"
+      />
+
+      <LrButtonBasic
+        className="width_100"
+        text={"Entrar"}
+        type="button"
+        onClick={() => navigate("/entrar")}
       />
     </FormAuth>
   );
