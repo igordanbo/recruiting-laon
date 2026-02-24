@@ -35,7 +35,7 @@ cd recruiting-laon
 ## 1️⃣ Acesse a pasta do backend
 
 ```bash
-cd backend
+cd recruiting-laon-backend
 ```
 
 ---
@@ -127,7 +127,7 @@ A documentação completa da API está disponível no Postman:
 ## 1️⃣ Acesse a pasta do frontend
 
 ```bash
-cd frontend
+cd recruiting-laon-frontend
 ```
 
 ---
