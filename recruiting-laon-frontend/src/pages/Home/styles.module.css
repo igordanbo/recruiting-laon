@@ -25,13 +25,12 @@
   z-index: 1;
 }
 
-/* conteúdo acima do overlay */
 .lr_section_home > * {
   position: relative;
   z-index: 2;
 }
 
-.lr_section_home_badge{
+.lr_section_home_badge {
   border: solid 2px #ffffff70;
   color: #ffffff70;
   font-size: 14px;
@@ -58,4 +57,11 @@
   border-radius: 8px;
 
   padding: 48px 64px;
+}
+
+@media (max-width: 520px) {
+  .lr_section_home_content {
+    padding: 48px 24px;
+    margin: 0 24px;
+  }
 }

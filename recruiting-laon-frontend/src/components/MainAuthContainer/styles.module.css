@@ -9,3 +9,9 @@
   display: flex;
   justify-content: center;
 }
+
+@media (max-width: 1000px) {
+  .main_auth_container {
+    background-color: var(--gray-200);
+  }
+}
