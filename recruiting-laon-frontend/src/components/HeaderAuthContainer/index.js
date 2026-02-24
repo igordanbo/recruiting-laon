@@ -9,16 +9,18 @@ export default function HeaderAuthContainer() {
   const navigate = useNavigate();
   return (
     <header className={`${styles.header_container}`}>
-      <LrButtonBack onClick={() => navigate("/")} />
-      <SvgLogo size="small" />
-      {location.pathname === "/entrar" ? (
-        <LrButtonBasic
-          text="Cadastrar"
-          onClick={() => navigate("/cadastrar")}
-        />
-      ) : (
-        <LrButtonBasic text="Entrar" onClick={() => navigate("/entrar")} />
-      )}
+      <div className={`${styles.inner_header_container}`}>
+        <LrButtonBack onClick={() => navigate("/")} />
+        <SvgLogo size="small" />
+        {location.pathname === "/entrar" ? (
+          <LrButtonBasic
+            text="Cadastrar"
+            onClick={() => navigate("/cadastrar")}
+          />
+        ) : (
+          <LrButtonBasic text="Entrar" onClick={() => navigate("/entrar")} />
+        )}
+      </div>
     </header>
   );
 }

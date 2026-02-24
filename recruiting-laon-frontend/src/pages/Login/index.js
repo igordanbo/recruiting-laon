@@ -56,7 +56,15 @@ export default function Login() {
     try {
       setLoading(true);
 
-      await api.post("/login", dataLogin);
+      const response = await api.post("/login", dataLogin);
+
+      const { token, user } = response.data;
+
+      // token
+      localStorage.setItem("lr_api_token", token);
+
+      // usuario
+      localStorage.setItem("lr_user", JSON.stringify(user));
 
       toast.success("Login realizado com sucesso.");
 

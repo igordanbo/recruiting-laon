@@ -1,0 +1,21 @@
+.section_single_serie {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.main_container_single_serie {
+  display: flex;
+  gap: 96px;
+
+  width: 100%;
+  max-width: 1200px;
+  padding: 0 24px;
+}
+
+@media (max-width: 1000px) {
+  .main_container_single_serie {
+    flex-direction: column;
+    padding: 0;
+  }
+}

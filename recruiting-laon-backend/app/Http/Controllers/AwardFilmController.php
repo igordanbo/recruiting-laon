@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\AwardRequest;
 use App\Models\Film;
 
-class AwardController extends Controller
+class AwardFilmController extends Controller
 {
     public function index($id_film)
     {

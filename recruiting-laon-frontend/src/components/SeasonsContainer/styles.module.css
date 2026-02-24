@@ -1,0 +1,94 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 0 24px;
+}
+
+.title {
+  font-size: 24px;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+.seasonCard {
+  border-bottom: 1px solid var(--gray-400);
+  margin-bottom: 16px;
+  overflow: hidden;
+  transition: 0.3s ease;
+}
+
+.seasonHeader {
+  padding: 16px 0;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.seasonHeader h3 {
+  margin: 0;
+  font-size: 18px;
+  color: var(--gray-500);
+}
+
+.arrow {
+  font-size: 14px;
+}
+
+.episodesContainer {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: all 0.4s ease;
+}
+
+.open {
+  max-height: 1000px;
+  opacity: 1;
+  transform: translateY(0);
+  padding: 8px 32px 24px 32px;
+}
+
+.episodeCard {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 15px 0;
+}
+
+.episodeCard:last-child {
+  border-bottom: none;
+}
+
+.episodeInfo {
+  max-width: 75%;
+  color: var(--gray-400);
+}
+.episodeInfo strong {
+  font-size: 16px;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.synopsis {
+  font-size: 14px;
+
+  margin-top: 5px;
+}
+
+.button {
+  padding: 8px 14px;
+  background-color: #000;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.2s ease;
+  height: fit-content;
+}
+
+.button:hover {
+  background-color: #333;
+}

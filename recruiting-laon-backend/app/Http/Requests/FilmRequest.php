@@ -24,10 +24,12 @@ class FilmRequest extends FormRequest
         return [
             'title' => 'required|string|max:255|min:3',
             'original_title' => 'required|string|max:255|min:3',
-            'year' => 'required|integer|digits:4|min:1888|max:' . date('Y'),
+            'year' => 'required|integer|digits:4|min:1800|max:' . date('Y'),
             'duration' => 'required|integer|min:1|max:500',
             'synopsis' => 'required|string|min:10',
             'director' => 'required|string|max:255|min:3',
+            'trailer_url' => 'required|url',
+            'status' => 'in:released,upcoming'
         ];
     }
 
@@ -59,6 +61,11 @@ class FilmRequest extends FormRequest
             'director.required' => 'O diretor é obrigatório.',
             'director.min' => 'O nome do diretor deve ter no mínimo 3 caracteres.',
             'director.max' => 'O nome do diretor deve ter no máximo 255 caracteres.',
+
+            'trailer_url.url' => 'Forneça uma url válida.',
+            'trailer_url.required' => 'A url do trailer é obrigatório',
+
+            'status.in' => 'O status pode ser somente released (para lançado) ou upcoming (para filmes que lançarão em breve).'
         ];
     }
 }

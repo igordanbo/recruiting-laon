@@ -2,13 +2,21 @@
 
 use App\Http\Controllers\ActorController;
 use App\Http\Controllers\ActorFilmController;
+use App\Http\Controllers\ActorSerieController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AwardController;
+use App\Http\Controllers\AwardFilmController;
+use App\Http\Controllers\AwardSerieController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\FilmController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CategoryFilmController;
-use App\Http\Controllers\RatingController;
+use App\Http\Controllers\CategorySerieController;
+use App\Http\Controllers\EpisodeController;
+use App\Http\Controllers\RatingFilmController;
+use App\Http\Controllers\RatingSeriesController;
+use App\Http\Controllers\SeasonController;
+use App\Http\Controllers\SerieController;
 use App\Http\Controllers\UserFilmController;
 use Illuminate\Support\Facades\Route;
 
@@ -17,6 +25,7 @@ Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 
 Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/me', [AuthController::class, 'me']);
     Route::post('/logout', [AuthController::class, 'logout']);
 
     // users routes
@@ -47,17 +56,17 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::put('/actors/{id_actor}', [ActorController::class, 'update']);
     Route::delete('/actors/{id_actor}', [ActorController::class, 'destroy']);
 
-    // awards routes
-    Route::get('/films/{id_film}/awards', [AwardController::class, 'index']);
-    Route::post('/films/{id_film}/awards', [AwardController::class, 'store']);
-    Route::put('/films/{id_film}/awards/{id_award}', [AwardController::class, 'update']);
-    Route::delete('/films/{id_film}/awards/{id_award}', [AwardController::class, 'destroy']);
+    // awards-films routes - para associar um prêmio a um filme
+    Route::get('/films/{id_film}/awards', [AwardFilmController::class, 'index']);
+    Route::post('/films/{id_film}/awards', [AwardFilmController::class, 'store']);
+    Route::put('/films/{id_film}/awards/{id_award}', [AwardFilmController::class, 'update']);
+    Route::delete('/films/{id_film}/awards/{id_award}', [AwardFilmController::class, 'destroy']);
 
-    // rating routes
-    Route::get('/films/{id_film}/ratings', [RatingController::class, 'index']);
-    Route::post('/films/{id_film}/ratings', [RatingController::class, 'store']);
-    Route::put('/films/{id_film}/ratings/{id_rating}', [RatingController::class, 'update']);
-    Route::delete('/films/{id_film}/ratings/{id_rating}', [RatingController::class, 'destroy']);
+    // rating-films routes - para associar uma avaliação a um filme
+    Route::get('/films/{id_film}/ratings', [RatingFilmController::class, 'index']);
+    Route::post('/films/{id_film}/ratings', [RatingFilmController::class, 'store']);
+    Route::put('/films/{id_film}/ratings/{id_rating}', [RatingFilmController::class, 'update']);
+    Route::delete('/films/{id_film}/ratings/{id_rating}', [RatingFilmController::class, 'destroy']);
 
     // film-category routes - para associar uma categoria a um filme
     Route::post('/films/{id_film}/categories', [CategoryFilmController::class, 'store']);
@@ -70,4 +79,45 @@ Route::middleware('auth:sanctum')->group(function () {
     // film-user routes - para marcar um filme como assistido por um usuário
     Route::post('/films/{id_film}/users', [UserFilmController::class, 'store']);
     Route::delete('/films/{id_film}/users', [UserFilmController::class, 'destroy']);
+
+    // series routes
+    Route::get('/series', [SerieController::class, 'index']);
+    Route::get('/series/{id_serie}', [SerieController::class, 'show']);
+    Route::post('/series', [SerieController::class, 'store']);
+    Route::put('/series/{id_serie}', [SerieController::class, 'update']);
+    Route::delete('/series/{id_serie}', [SerieController::class, 'destroy']);
+
+    // awards-series routes - para associar um prêmio a uma serie
+    Route::get('/series/{id_serie}/awards', [AwardSerieController::class, 'index']);
+    Route::post('/series/{id_serie}/awards', [AwardSerieController::class, 'store']);
+    Route::put('/series/{id_serie}/awards/{id_award}', [AwardSerieController::class, 'update']);
+    Route::delete('/series/{id_serie}/awards/{id_award}', [AwardSerieController::class, 'destroy']);
+
+    // rating-series routes - para associar uma avaliação a uma serie
+    Route::get('/series/{id_serie}/ratings', [RatingSeriesController::class, 'index']);
+    Route::post('/series/{id_serie}/ratings', [RatingSeriesController::class, 'store']);
+    Route::put('/series/{id_serie}/ratings/{id_rating}', [RatingSeriesController::class, 'update']);
+    Route::delete('/series/{id_serie}/ratings/{id_rating}', [RatingSeriesController::class, 'destroy']);
+
+    // serie-category routes - para associar uma categoria a uma serie
+    Route::post('/series/{id_serie}/categories', [CategorySerieController::class, 'store']);
+    Route::delete('/series/{id_serie}/categories', [CategorySerieController::class, 'destroy']);
+
+    // serie-actor routes - para associar um ator a uma serie
+    Route::post('/series/{id_serie}/actors', [ActorSerieController::class, 'store']);
+    Route::delete('/series/{id_serie}/actors', [ActorSerieController::class, 'destroy']);
+
+    // season routes
+    Route::get('/seasons', [SeasonController::class, 'index']);
+    Route::get('/seasons/{id_season}', [SeasonController::class, 'show']);
+    Route::post('/seasons', [SeasonController::class, 'store']);
+    Route::put('/seasons/{id_season}', [SeasonController::class, 'update']);
+    Route::delete('/seasons/{id_season}', [SeasonController::class, 'destroy']);
+
+    // episodes routes
+    Route::get('/episodes', [EpisodeController::class, 'index']);
+    Route::get('/episodes/{id_episode}', [EpisodeController::class, 'show']);
+    Route::post('/episodes', [EpisodeController::class, 'store']);
+    Route::put('/episodes/{id_episode}', [EpisodeController::class, 'update']);
+    Route::delete('/episodes/{id_episode}', [EpisodeController::class, 'destroy']);
 });

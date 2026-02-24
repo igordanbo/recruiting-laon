@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\RatingRequest;
 use App\Models\Film;
 
-class RatingController extends Controller
+class RatingFilmController extends Controller
 {
     public function index($id_film)
     {
