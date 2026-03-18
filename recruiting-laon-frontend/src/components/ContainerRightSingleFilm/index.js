@@ -1,4 +1,6 @@
+import { Link } from "react-router-dom";
 import { formatDuration } from "../../utils/formatDuration";
+import LrButtonSecondary from "../LrButtonSecondary";
 import styles from "./styles.module.css";
 
 export default function ContainerRightSingleFilm({
@@ -12,6 +14,9 @@ export default function ContainerRightSingleFilm({
   awards,
   director,
   ratings,
+  isFavorite,
+  onClickFavorite,
+  to,
 }) {
   return (
     <div className={` ${styles.container_right_single_film}`}>
@@ -45,6 +50,37 @@ export default function ContainerRightSingleFilm({
             ))}
           </span>
         )}
+      </div>
+
+      <div className={` ${styles.infos_right_mobile_links_single_film}`}>
+        <Link
+          to={to}
+          target="_blank"
+          className={`${styles.link_trailer_single_film}`}
+        >
+          Assistir o Trailer
+        </Link>
+
+        <LrButtonSecondary
+          onClick={onClickFavorite}
+          title={"Favoritar"}
+          variant="small"
+          adicionalClassName={`${styles.link_left_single_film_favorite}`}
+          text={
+            <>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                height="24px"
+                viewBox="0 -960 960 960"
+                width="24px"
+                fill="#DA954B"
+              >
+                <path d="m354-287 126-76 126 77-33-144 111-96-146-13-58-136-58 135-146 13 111 97-33 143ZM233-120l65-281L80-590l288-25 112-265 112 265 288 25-218 189 65 281-247-149-247 149Zm247-350Z" />
+              </svg>
+              <p> {isFavorite ? "Desfavoritar" : "Favoritar"}</p>
+            </>
+          }
+        ></LrButtonSecondary>
       </div>
 
       <div className={` ${styles.infos_right_single_film}`}>

@@ -1,0 +1,24 @@
+.box_user_edit_info {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  width: 100%;
+}
+.grid_user_edit_info {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 40px;
+  width: 100%;
+}
+
+@media (max-width: 1000px) {
+  .grid_user_edit_info {
+    grid-template-columns: 1fr;
+  }
+}
+
+.header_user_edit_info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}

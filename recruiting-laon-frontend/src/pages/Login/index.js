@@ -3,41 +3,43 @@ import LrButtonPrimary from "../../components/LrButtonPrimary";
 import LrInputText from "../../components/LrInputText";
 import LrButtonBasic from "../../components/LrButtonBasic";
 import LrInputPassword from "../../components/LrInputPassword";
-import api from "../../utils/api";
+import styles from "./styles.module.css";
 import { toast } from "react-toastify";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { validateEmail } from "../../validators/email.validator";
-import { validatePassword } from "../../validators/password.validator";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../../auth/useAuth";
 
 export default function Login() {
-  const [dataLogin, setDataLogin] = useState({
-    email: "",
-    password: "",
-  });
+  const { login, user } = useAuth();
 
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
 
-  const handleChangeLogin = (event) => {
-    const { name, value } = event.target;
-    setDataLogin((prev) => ({ ...prev, [name]: value }));
-  };
+  useEffect(() => {
+    if (user) {
+      navigate("/catalogo");
+    }
+  }, [user, navigate]);
 
-  const handleSubmitLogin = async (event) => {
+  async function handleSubmit(event) {
     event.preventDefault();
+
+    setLoading(true);
 
     const newErrors = {};
 
-    if (!dataLogin.email) {
+    if (!email) {
       newErrors.email = "O email é obrigatório.";
-    } else if (!validateEmail(dataLogin.email)) {
+    } else if (!validateEmail(email)) {
       newErrors.email = "O email é inválido.";
     }
 
-    if (!dataLogin.password) {
+    if (!password) {
       newErrors.password = "A senha é obrigatória.";
     }
 
@@ -51,92 +53,59 @@ export default function Login() {
           ))}
         </div>,
       );
+      setLoading(false);
+
       return;
     }
 
     try {
-      setLoading(true);
+      await login({ email, password });
 
-      const response = await api.post("/login", dataLogin);
-
-      const { token, user } = response.data;
-
-      // token
-      localStorage.setItem("lr_api_token", token);
-
-      // usuario
-      localStorage.setItem("lr_user", JSON.stringify(user));
-
-      toast.success("Login realizado com sucesso.");
-
-      setDataLogin({
-        name: "",
-        email: "",
-        password: "",
-      });
-
-      setErrors({});
-
-      navigate("/catalogo");
+      toast.success("Login realizado!");
     } catch (error) {
-      console.error(error);
+      const message = error.response?.data?.message || "Erro ao fazer login";
 
-      if (error.response?.status === 422) {
-        const apiErrors = error.response.data.errors;
-
-        toast.error(
-          <div>
-            {Object.values(apiErrors).map((messages, index) =>
-              messages.map((msg, i) => <div key={`${index}-${i}`}>{msg}</div>),
-            )}
-          </div>,
-        );
-
-        setErrors(apiErrors);
-
-        return;
-      } else if (error.response?.data?.message) {
-        toast.error(error.response.data.message);
-      } else {
-        toast.error("Erro ao fazer login. Tente novamente.");
-      }
-    } finally {
+      toast.error(message);
       setLoading(false);
     }
-  };
+
+    navigate("/catalogo");
+
+    setLoading(false);
+  }
 
   return (
-    <FormAuth
-      title="Login"
-      subtitle="Bem vindo(a) de volta!"
-      onSubmit={handleSubmitLogin}
-    >
-      <LrInputText
-        className="width_100 color_white"
-        placeholder="Email"
-        name="email"
-        value={dataLogin.email}
-        onChange={handleChangeLogin}
-      />
+    <FormAuth variant="login" onSubmit={handleSubmit}>
+      <div className="display_flex flex_column gap_24">
+        <LrInputText
+          className="width_100 color_white"
+          placeholder="Email"
+          name="email"
+          value={email}
+          onChange={(event) => setEmail(event.target.value)}
+          error={errors?.email}
+        />
 
-      <LrInputPassword
-        placeholder="Senha"
-        name="password"
-        value={dataLogin.password}
-        onChange={handleChangeLogin}
-      />
+        <LrInputPassword
+          placeholder="Senha"
+          name="password"
+          value={password}
+          onChange={(event) => setPassword(event.target.value)}
+          error={errors?.password}
+        />
+      </div>
+
+      <p className="lr_regular_126 color_gray_500">
+        Não possui conta?{" "}
+        <Link to="/cadastrar" className={styles.lr_link_register}>
+          Cadastre-se agora.
+        </Link>
+      </p>
 
       <LrButtonPrimary
         text={loading ? "Entrando..." : "Entrar"}
         disabled={loading}
         type="submit"
-      />
-
-      <LrButtonBasic
-        className="width_100"
-        text={"Cadastrar"}
-        type="button"
-        onClick={() => navigate("/cadastrar")}
       />
     </FormAuth>
   );

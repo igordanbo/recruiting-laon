@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import api from "../../utils/api";
+import { useNavigate } from "react-router-dom";
+import api from "../../api/api";
 import ContainerGrid from "../../components/ContainerGrid";
 import styles from "./styles.module.css";
 import Loader from "../../components/Loader";
-import { useNavigate } from "react-router-dom";
 import CircleSvg from "../../components/CircleSvg";
 
 export default function Films() {

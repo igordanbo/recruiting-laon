@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import api from "../../utils/api";
+import { useNavigate } from "react-router-dom";
+import api from "../../api/api";
 import ContainerGrid from "../../components/ContainerGrid";
 import styles from "./styles.module.css";
 import Loader from "../../components/Loader";
-import { useNavigate } from "react-router-dom";
 import CircleSvg from "../../components/CircleSvg";
 
 export default function Search() {
@@ -123,51 +123,27 @@ export default function Search() {
       {loading ? (
         <Loader />
       ) : films.length === 0 ? (
-        <ContainerGrid
-          description="Filmes"
-          disableNext={true}
-          disablePrev={true}
-        >
+        <ContainerGrid films={films} variant="films" description="Filmes">
           {" "}
           <p className={`color_gray_500 ${styles.empty}`}>
             Nenhum filme encontrado
           </p>{" "}
         </ContainerGrid>
       ) : (
-        <ContainerGrid
-          description="Filmes"
-          variant="films"
-          onClickNext={handleNextFilms}
-          onClickPrev={handlePrevFilms}
-          disableNext={currentPageFilms >= lastPageFilms}
-          disablePrev={currentPageFilms <= 1}
-          films={films}
-        />
+        <ContainerGrid films={films} variant="films" description="Filmes" />
       )}
 
       {loading ? (
         <Loader />
       ) : series.length === 0 ? (
-        <ContainerGrid
-          description="Séries"
-          disableNext={true}
-          disablePrev={true}
-        >
+        <ContainerGrid films={series} variant="series" description="Séries">
           {" "}
           <p className={`color_gray_500 ${styles.empty}`}>
             Nenhuma série encontrada
           </p>{" "}
         </ContainerGrid>
       ) : (
-        <ContainerGrid
-          description="Séries"
-          variant="series"
-          onClickNext={handleNextSeries}
-          onClickPrev={handlePrevSeries}
-          disableNext={currentPageSeries >= lastPageSeries}
-          disablePrev={currentPageSeries <= 1}
-          films={series}
-        />
+        <ContainerGrid films={series} variant="series" description="Séries" />
       )}
     </section>
   );

@@ -13,6 +13,14 @@ class FilmController extends Controller
     {
         $query = Film::with(['categories', 'ratings', 'awards', 'actors']);
 
+        if ($request->filled('limit')) {
+            $limit = $request->limit;
+        } else {
+            $limit = null;
+        }
+
+        $query->limit($limit);
+
         if ($request->filled('search')) {
             $query->where('title', 'like', '%' . $request->search . '%');
         }
@@ -28,7 +36,7 @@ class FilmController extends Controller
         }
 
         $films = $query
-            ->paginate(6)
+            ->paginate($limit)
             ->withQueryString();
 
         return response()->json($films);

@@ -20,7 +20,7 @@ class UserController extends Controller
 
     public function show($id_user)
     {
-        $user = User::findOrFail($id_user);
+        $user = User::with('films', 'series')->findOrFail($id_user);
 
         return response()->json([
             'user' => $user

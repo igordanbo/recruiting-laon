@@ -11,6 +11,7 @@ export default function SvgLogo({ size = "medium", onClick }) {
 
   return (
     <svg
+      className={"cursor_pointer"}
       onClick={onClick}
       width={width}
       height={height}

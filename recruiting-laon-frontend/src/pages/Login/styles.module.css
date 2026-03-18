@@ -1,0 +1,9 @@
+.lr_link_register {
+  text-decoration: none;
+  color: var(--white);
+  font-weight: 600;
+}
+
+.lr_link_register:hover {
+  opacity: 0.6;
+}

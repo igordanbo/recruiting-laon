@@ -64,7 +64,8 @@
     pointer-events: none;
   }
 
-  .link_left_single_film {
+  .link_left_single_film,
+  .link_left_single_film_favorite{
     display: none !important;
   }
 }

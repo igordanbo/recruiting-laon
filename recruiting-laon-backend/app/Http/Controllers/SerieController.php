@@ -13,6 +13,14 @@ class SerieController extends Controller
     {
         $query = Serie::with(['categories', 'ratings', 'awards', 'actors', 'seasons', 'seasons.episodes']);
 
+        if ($request->filled('limit')) {
+            $limit = $request->limit;
+        } else {
+            $limit = null;
+        }
+
+        $query->limit($limit);
+
         if ($request->filled('search')) {
             $query->where('title', 'like', '%' . $request->search . '%');
         }
@@ -23,8 +31,9 @@ class SerieController extends Controller
             });
         }
 
+
         $series = $query
-            ->paginate(6)
+            ->paginate($limit)
             ->withQueryString();
 
         return response()->json($series);

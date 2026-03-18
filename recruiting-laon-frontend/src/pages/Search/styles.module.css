@@ -1,6 +1,6 @@
 .search_container {
   width: 100%;
-  max-width: 1200px;
+  max-width: var(--max-container-width);
   margin: 0;
   display: flex;
   flex-direction: column;
@@ -101,7 +101,7 @@
   transition: background-color 9999s ease-in-out 0s;
 }
 
-.empty{
+.empty {
   height: 276px;
   width: 100%;
   display: flex;

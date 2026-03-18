@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import api from "../../utils/api";
+import { useNavigate } from "react-router-dom";
+import api from "../../api/api";
 import ContainerGrid from "../../components/ContainerGrid";
 import styles from "./styles.module.css";
 import Loader from "../../components/Loader";
-import { useNavigate } from "react-router-dom";
 import SliderFilteredFilms from "../../components/SliderFilteredFilms";
 
 export default function Catalog() {
@@ -12,7 +12,6 @@ export default function Catalog() {
   const [filteredFilms, setFilteredFilms] = useState([]);
   const [series, setSeries] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
 
   const navigate = useNavigate();
 
@@ -20,7 +19,9 @@ export default function Catalog() {
     try {
       setLoading(true);
 
-      const response = await api.get("/films");
+      const response = await api.get("/films", {
+        params: { limit: null, status: "released" },
+      });
 
       const data = response.data;
 
@@ -40,7 +41,9 @@ export default function Catalog() {
     try {
       setLoading(true);
 
-      const response = await api.get("/series");
+      const response = await api.get("/series", {
+        params: { limit: null },
+      });
 
       const data = response.data;
 
@@ -56,36 +59,9 @@ export default function Catalog() {
     }
   };
 
-  const fetchFilteredFilms = async () => {
-    try {
-      setLoading(true);
-
-      const status = "upcoming";
-
-      const response = await api.get("/films", {
-        params: { status },
-      });
-
-      const data = response.data;
-
-      setFilteredFilms(data.data || []);
-    } catch (error) {
-      toast.error(
-        error.response?.data?.message || "Erro ao carregar os filmes.",
-      );
-    } finally {
-      setLoading(false);
-    }
-  };
-
   useEffect(() => {
-    if (window.innerWidth < 1000) {
-      setIsMobile(true);
-    }
-
     fetchFilms();
     fetchSeries();
-    fetchFilteredFilms();
   }, []);
 
   if (loading) {
@@ -94,10 +70,6 @@ export default function Catalog() {
 
   return (
     <section className={styles.catalog_container}>
-      {isMobile && filteredFilms && (
-        <SliderFilteredFilms films={filteredFilms} />
-      )}
-
       <h1 className={`semibold_40 color_white mb-4 ${styles.catalog_title}`}>
         Populares
       </h1>
@@ -107,32 +79,15 @@ export default function Catalog() {
       ) : films.length === 0 ? (
         <p className="text-white">Nenhum filme encontrado.</p>
       ) : (
-        <ContainerGrid
-          films={films}
-          variant="films"
-          description="Filmes"
-          disablePrev={true}
-          onClickNext={() => {
-            navigate("/catalogo/filmes");
-          }}
-        />
+        <ContainerGrid films={films} variant="films" description="Filmes" />
       )}
 
-      {console.log(series)}
       {loading ? (
         <Loader />
       ) : series.length === 0 ? (
         <p className="text-white">Nenhuma série encontrada.</p>
       ) : (
-        <ContainerGrid
-          films={series}
-          variant="series"
-          description="Série"
-          disablePrev={true}
-          onClickNext={() => {
-            navigate("/catalogo/series");
-          }}
-        />
+        <ContainerGrid films={series} variant="series" description="Séries" />
       )}
     </section>
   );

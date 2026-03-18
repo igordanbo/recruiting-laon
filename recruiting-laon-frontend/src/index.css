@@ -43,6 +43,8 @@ span {
   --seccessful: #3ee48a;
   --informational: #5f3ee4;
 
+  --max-container-width: 1728px;
+
   --gray-100: #1f1d2f;
   --gray-100-60: #1f1d2f60;
   --gray-100-40: #1f1d2f40;
@@ -127,4 +129,40 @@ span {
 
 .width_max_content {
   max-width: max-content;
+}
+
+.display_flex {
+  display: flex;
+}
+
+.flex_column {
+  flex-direction: column;
+}
+
+.align_items_center {
+  align-items: center;
+}
+
+.justify_content_center {
+  justify-content: center;
+}
+
+.justify_content_flex_start {
+  justify-content: flex-start;
+}
+
+.justify_content_flex_end {
+  justify-content: flex-end;
+}
+
+.gap_16 {
+  gap: 16px;
+}
+
+.gap_24 {
+  gap: 24px;
+}
+
+.gap_40 {
+  gap: 40px;
 }

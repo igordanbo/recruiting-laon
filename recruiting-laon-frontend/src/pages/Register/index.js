@@ -2,16 +2,20 @@ import FormAuth from "../../components/FormAuth";
 import LrButtonPrimary from "../../components/LrButtonPrimary";
 import LrInputText from "../../components/LrInputText";
 import LrInputPassword from "../../components/LrInputPassword";
-import api from "../../utils/api";
+import LrButtonBasic from "../../components/LrButtonBasic";
+import sanctum from "../../api/sanctum";
+import web from "../../api/web";
 import { toast } from "react-toastify";
 import { useState } from "react";
 import { validateEmail } from "../../validators/email.validator";
 import { validateName } from "../../validators/name.validator";
 import { validatePassword } from "../../validators/password.validator";
 import { useNavigate } from "react-router-dom";
-import LrButtonBasic from "../../components/LrButtonBasic";
+import { useAuth } from "../../auth/useAuth";
 
 export default function Register() {
+  const { register } = useAuth();
+
   const [dataRegister, setDataRegister] = useState({
     name: "",
     email: "",
@@ -65,23 +69,14 @@ export default function Register() {
     }
 
     try {
-      setLoading(true);
-
-      await api.post("/register", dataRegister);
-
-      toast.success(
-        "Cadastro realizado com sucesso. Realize o login para acessar a plaraforma.",
-      );
-
-      setDataRegister({
-        name: "",
-        email: "",
-        password: "",
+      await register({
+        name: dataRegister.name,
+        email: dataRegister.email,
+        password: dataRegister.password,
       });
 
-      setErrors({});
-
-      navigate("/entrar");
+      toast.success("Conta criada!");
+      navigate("/catalogo");
     } catch (error) {
       console.error(error);
 
@@ -110,35 +105,36 @@ export default function Register() {
   };
 
   return (
-    <FormAuth
-      title="Cadastre-se"
-      subtitle="Acompanhe os melhores filmes e séries."
-      onSubmit={handleSubmitRegister}
-    >
-      <LrInputText
-        className="width_100 color_white"
-        placeholder="Nome completo"
-        name="name"
-        value={dataRegister.name}
-        onChange={handleChangeRegister}
-      />
+    <FormAuth variant="register" onSubmit={handleSubmitRegister}>
+      <div className="display_flex flex_column gap_24">
+        <LrInputText
+          className="width_100 color_white"
+          placeholder="Nome completo"
+          name="name"
+          value={dataRegister.name}
+          onChange={handleChangeRegister}
+          error={errors?.name}
+        />
 
-      <LrInputText
-        className="width_100 color_white"
-        placeholder="Email"
-        name="email"
-        value={dataRegister.email}
-        onChange={handleChangeRegister}
-      />
+        <LrInputText
+          className="width_100 color_white"
+          placeholder="Email"
+          name="email"
+          value={dataRegister.email}
+          onChange={handleChangeRegister}
+          error={errors?.email}
+        />
 
-      <LrInputPassword
-        placeholder="Senha"
-        name="password"
-        value={dataRegister.password}
-        onChange={handleChangeRegister}
-      />
+        <LrInputPassword
+          placeholder="Senha"
+          name="password"
+          value={dataRegister.password}
+          onChange={handleChangeRegister}
+          error={errors?.password}
+        />
+      </div>
 
-      <p className="regular_12 color_gray_500">
+      <p className="lr_regular_12 color_gray_500">
         Ao clicar em <strong>cadastrar</strong>, você está aceitando os Termos e
         Condições e a Política de Privacidade da Laon.
       </p>
@@ -147,13 +143,6 @@ export default function Register() {
         text={loading ? "Cadastrando..." : "Cadastrar"}
         disabled={loading}
         type="submit"
-      />
-
-      <LrButtonBasic
-        className="width_100"
-        text={"Entrar"}
-        type="button"
-        onClick={() => navigate("/entrar")}
       />
     </FormAuth>
   );

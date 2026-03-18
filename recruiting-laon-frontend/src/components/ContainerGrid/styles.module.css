@@ -19,7 +19,37 @@
   overflow: hidden;
   cursor: pointer;
   width: 100%;
+  max-width: 200px;
   height: 300px;
+}
+
+.container_grid_films {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.container_grid_films::-webkit-scrollbar {
+  display: none;
+}
+
+.container_grid_films {
+  padding-left: max(
+    32px,
+    calc((100vw - var(--max-container-width) + 48px + 24px) / 2)
+  );
+}
+
+.container_grid_films div {
+  padding: 0;
 }
 
 .tumb_film_card img {
@@ -58,7 +88,7 @@
 
 .film_name {
   font-weight: 600;
-  line-height: 16px;
+  line-height: 20px;
 }
 
 .film_play_badge {

@@ -7,11 +7,12 @@ export default function LrInputPassword({
   value,
   onChange,
   className,
+  error
 }) {
   const [showPassword, setShowPassword] = useState(false);
 
   return (
-    <div className={`${styles.lr_input_wrapper} ${className || ""}`}>
+    <div className={`${styles.lr_input_wrapper} ${className || ""} ${error ? styles.error : ""}`}>
       <input
         className={`${styles.lr_input_text} color_white regular_16`}
         type={showPassword ? "text" : "password"}

@@ -3,16 +3,16 @@
   flex-direction: column;
   justify-content: center;
 
-  gap: 32px;
+  gap: 40px;
 
   width: 100%;
-  max-width: 588px;
+  max-width: 692px;
 
   border-radius: 8px;
   border: none;
 
   background: var(--gray-200);
-  padding: 48px 64px;
+  padding: 80px;
 }
 
 .form_auth_header {
@@ -24,9 +24,18 @@
 .form_auth_main {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 40px;
 }
 
+.form_auth_link_login {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.form_auth_link_login:hover {
+  opacity: 0.6;
+}
 @media (max-width: 1000px) {
   .form_auth {
     padding: 48px 24px;

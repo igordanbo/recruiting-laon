@@ -7,10 +7,14 @@ export default function LrInputText({
   value,
   onChange,
   className,
+  error,
 }) {
   return (
     <input
-      className={`${styles.lr_input_text} ${className || ""}`}
+      className={`
+        ${styles.lr_input_text} 
+        ${className || ""} 
+        ${error ? styles.error : ""}`}
       type={type}
       placeholder={placeholder}
       name={name}

@@ -7,12 +7,12 @@ use App\Models\Film;
 
 class UserFilmController extends Controller
 {
-    public function store(UserFilmRequest $request, $film_id)
+    public function store(UserFilmRequest $request, $id_film)
     {
-        $film = Film::findOrFail($film_id);
+        $film = Film::findOrFail($id_film);
 
         $already_sync = $film->users()
-            ->where('users.id', $request->user_id)
+            ->where('users.id', $request->id_user)
             ->exists();
 
         if ($already_sync) {
@@ -22,7 +22,7 @@ class UserFilmController extends Controller
         }
 
         $film->users()->syncWithoutDetaching([
-            $request->user_id
+            $request->id_user
         ]);
 
         return response()->json([
@@ -36,7 +36,7 @@ class UserFilmController extends Controller
         $film = Film::findOrFail($id_film);
 
         $already_sync = $film->users()
-            ->where('users.id', $request->user_id)
+            ->where('users.id', $request->id_user)
             ->exists();
 
         if (!$already_sync) {
@@ -45,7 +45,7 @@ class UserFilmController extends Controller
             ], 400);
         }
 
-        $film->users()->detach($request->user_id);
+        $film->users()->detach($request->id_user);
 
         return response()->json([
             'message' => 'Filme desmarcado como assistido.'

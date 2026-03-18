@@ -22,19 +22,19 @@ class UserFilmRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'film_id' => 'required|exists:films,id',
-            'user_id' => 'required|exists:users,id',
+            'id_film' => 'required|exists:films,id',
+            'id_user' => 'required|exists:users,id',
         ];
     }
 
     public function messages(): array
     {
         return [
-            'film_id.required' => 'O ID do filme é obrigatório.',
-            'film_id.exists' => 'O filme especificado não existe.',
+            'id_film.required' => 'O ID do filme é obrigatório.',
+            'id_film.exists' => 'O filme especificado não existe.',
 
-            'user_id.required' => 'O ID do usuário é obrigatório.',
-            'user_id.exists' => 'O usuário especificado não existe.',
+            'id_user.required' => 'O ID do usuário é obrigatório.',
+            'id_user.exists' => 'O usuário especificado não existe.',
         ];
     }
 }

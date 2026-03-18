@@ -22,6 +22,9 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role',
+        'birth_date',
+        'gender'
     ];
 
     /**
@@ -50,5 +53,10 @@ class User extends Authenticatable
     public function films()
     {
         return $this->belongsToMany(Film::class);
+    }
+
+    public function series()
+    {
+        return $this->belongsToMany(Serie::class);
     }
 }

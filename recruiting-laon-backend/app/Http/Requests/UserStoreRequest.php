@@ -24,7 +24,10 @@ class UserStoreRequest extends FormRequest
         return [
             'name' => 'required|string|max:255|min:3',
             'email' => 'required|email|unique:users,email',
-            'password' => 'required|min:6'
+            'password' => 'required|min:6',
+            'role' => 'required|in:user,admin',
+            'birth_date' => 'date|before:today',
+            'gender' => 'in:male,female,other',
         ];
     }
 
@@ -41,6 +44,14 @@ class UserStoreRequest extends FormRequest
 
             'password.required' => 'Uma senha é obrigatória para realizar o cadastro na plataforma.',
             'password.min' => 'Insira uma senha com no mínimo 6 caracteres.',
+
+            'role.required' => 'O campo de função é obrigatório para realizar o cadastro na plataforma.',
+            'role.in' => 'O campo de função deve ser "user" ou "admin".',
+
+            'birth_date.date' => 'A data de nascimento deve ser uma data válida.',
+            'birth_date.before' => 'A data de nascimento deve ser uma data anterior à data atual.',
+
+            'gender.in' => 'O campo de gênero deve ser "male", "female" ou "other".',
         ];
     }
 }
