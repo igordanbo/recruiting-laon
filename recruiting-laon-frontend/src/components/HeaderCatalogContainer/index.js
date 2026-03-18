@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useAuth } from "../../auth/useAuth";
 import { toast } from "react-toastify";
 import { getInitial } from "../../utils/getInicial";
@@ -72,6 +72,20 @@ export default function HeaderCatalogContainer({
       </>
     );
   };
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 1000);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    handleResize();
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   return (
     <header className={`${styles.header_container}`}>
