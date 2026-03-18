@@ -23,6 +23,19 @@ export default function HeaderAuthContainer() {
         <div className={`${styles.inner_header_container}`}>
           <CircleSvg variant={"back"} onClick={() => navigate("/")} />
           <SvgLogo size="small" />
+          {location.pathname === "/entrar" ? (
+            <LrButtonBasic
+              text="Cadastrar"
+              className="width_max_content"
+              onClick={() => navigate("/cadastrar")}
+            />
+          ) : (
+            <LrButtonBasic
+              className="width_max_content"
+              text="Entrar"
+              onClick={() => navigate("/entrar")}
+            />
+          )}
         </div>
       ) : (
         <div className={`${styles.inner_header_container}`}>

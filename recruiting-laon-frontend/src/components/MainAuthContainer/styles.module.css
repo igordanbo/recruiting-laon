@@ -11,7 +11,8 @@
 }
 
 @media (max-width: 1000px) {
-  .main_auth_container {
-    background-color: var(--gray-200);
+  .main_container {
+    padding-left: 20px;
+    padding-right: 20px;
   }
 }

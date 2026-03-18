@@ -1,11 +1,11 @@
 import styles from "./styles.module.css";
 
-export default function CircleSvg({ variant, onClick }) {
+export default function CircleSvg({ variant, onClick, additionalClass }) {
   return (
     <>
       {variant === "back" && (
         <svg
-          className={styles.link_svg}
+          className={`${styles.link_svg} ${styles[additionalClass] || ""}`}
           onClick={onClick}
           width="32"
           height="32"

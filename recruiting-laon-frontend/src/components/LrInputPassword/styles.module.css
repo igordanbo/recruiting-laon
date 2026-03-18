@@ -11,6 +11,8 @@
 
   padding: 0 24px;
 
+  position: relative;
+
   transition: border 0.2s ease;
 }
 
@@ -41,6 +43,8 @@
   cursor: pointer;
   user-select: none;
   margin-left: 12px;
+  position: absolute;
+  right: 20px;
 }
 
 .lr_input_text:-webkit-autofill,
