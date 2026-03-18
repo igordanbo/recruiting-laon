@@ -10,7 +10,7 @@ class SeasonSeeder extends Seeder
 {
     public function run(): void
     {
-        $seriesCount = 6; // para 6 series
+        $seriesCount = 12; 
         $seasons = [];
 
         for ($seriesId = 1; $seriesId <= $seriesCount; $seriesId++) {

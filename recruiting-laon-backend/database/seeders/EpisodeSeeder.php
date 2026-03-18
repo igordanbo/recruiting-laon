@@ -11,7 +11,7 @@ class EpisodeSeeder extends Seeder
     public function run(): void
     {
         $episodes = [];
-        $seriesCount = 6;
+        $seriesCount = 12;
         $seasonsPerSeries = 2;
         $episodesPerSeason = 3;
 

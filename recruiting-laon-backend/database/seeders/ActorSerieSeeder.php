@@ -34,6 +34,32 @@ class ActorSerieSeeder extends Seeder
             ['serie_id' => 6, 'actor_id' => 3],
             ['serie_id' => 6, 'actor_id' => 1],
             ['serie_id' => 6, 'actor_id' => 2],
+
+            ['serie_id' => 7, 'actor_id' => 4],
+            ['serie_id' => 7, 'actor_id' => 5],
+            ['serie_id' => 7, 'actor_id' => 6],
+
+            ['serie_id' => 8, 'actor_id' => 1],
+            ['serie_id' => 8, 'actor_id' => 3],
+            ['serie_id' => 8, 'actor_id' => 4],
+
+            ['serie_id' => 9, 'actor_id' => 2],
+            ['serie_id' => 9, 'actor_id' => 6],
+            ['serie_id' => 9, 'actor_id' => 5],
+
+            ['serie_id' => 10, 'actor_id' => 3],
+            ['serie_id' => 10, 'actor_id' => 4],
+            ['serie_id' => 10, 'actor_id' => 1],
+
+            ['serie_id' => 11, 'actor_id' => 5],
+            ['serie_id' => 11, 'actor_id' => 2],
+            ['serie_id' => 11, 'actor_id' => 6],
+
+            ['serie_id' => 12, 'actor_id' => 1],
+            ['serie_id' => 12, 'actor_id' => 3],
+            ['serie_id' => 12, 'actor_id' => 4],
+
+
         ]);
     }
 }

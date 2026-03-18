@@ -63,7 +63,7 @@ export default function HeaderCatalogContainer({
             }}
             onClickList={() => {
               setOpenUserOptions(false);
-              navigate("/catalogo/favoritos");
+              navigate("/minha-conta/favoritos");
             }}
             openUserOptions={openUserOptions}
             setOpenUserOptions={setOpenUserOptions}

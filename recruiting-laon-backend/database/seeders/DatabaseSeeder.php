@@ -35,6 +35,8 @@ class DatabaseSeeder extends Seeder
             AwardSeriesSeeder::class,
             RatingSerieSeeder::class,
 
+            SerieUserSeeder::class,
+
         ]);
     }
 }

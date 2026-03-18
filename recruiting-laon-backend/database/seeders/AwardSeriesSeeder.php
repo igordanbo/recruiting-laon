@@ -82,6 +82,50 @@ class AwardSeriesSeeder extends Seeder
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
+
+            [
+                'film_id' => 7,
+                'title' => 'People’s Choice Award de Filme de Ação (2021)',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+
+            [
+                'film_id' => 8,
+                'title' => 'People’s Choice Award de Filme de Ação (2021)',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+
+            [
+                'film_id' => 9,
+                'title' => 'People’s Choice Award de Filme de Ação (2021)',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+
+            [
+                'film_id' => 10,
+                'title' => 'People’s Choice Award de Filme de Ação (2021)',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+
+            [
+                'film_id' => 11,
+                'title' => 'People’s Choice Award de Filme de Ação (2021)',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+
+            [
+                'film_id' => 12,
+                'title' => 'People’s Choice Award de Filme de Ação (2021)',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+
+
         ]);
     }
 }

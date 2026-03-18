@@ -54,7 +54,6 @@ function App() {
               <Route path="busca" element={<Search />} />
               <Route path="filmes" element={<Films />} />
               <Route path="series" element={<Series />} />
-              <Route path="favoritos" element={<Favorites />} />
             </Route>
 
             <Route
@@ -66,6 +65,7 @@ function App() {
               }
             >
               <Route index element={<Profile />} />
+              <Route path="favoritos" element={<Favorites />} />
             </Route>
 
             <Route

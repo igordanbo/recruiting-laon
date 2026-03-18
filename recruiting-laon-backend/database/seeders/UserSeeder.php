@@ -11,16 +11,6 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         DB::table('users')->insert([
-            [
-                'name' => 'Admin',
-                'email' => 'admin@admin.com',
-                'password' => bcrypt('password'),
-                'birth_date' => Carbon::now()->subYears(30)->format('Y-m-d'),
-                'gender' => 'male',
-                'role' => 'admin',
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
-            ],
 
             [
                 'name' => 'User',
@@ -32,6 +22,17 @@ class UserSeeder extends Seeder
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
+            [
+                'name' => 'Admin',
+                'email' => 'admin@admin.com',
+                'password' => bcrypt('password'),
+                'birth_date' => Carbon::now()->subYears(30)->format('Y-m-d'),
+                'gender' => 'male',
+                'role' => 'admin',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+
         ]);
     }
 }
