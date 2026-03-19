@@ -39,19 +39,19 @@ export default function Register() {
 
     if (!dataRegister.name) {
       newErrors.name = "O nome é obrigatório.";
-    } else if (!validateName(dataRegister.name)) {
+    } else if (!validateName(dataRegister.name) || "") {
       newErrors.name = "O nome deve ter pelo menos 3 caracteres.";
     }
 
     if (!dataRegister.email) {
       newErrors.email = "O email é obrigatório.";
-    } else if (!validateEmail(dataRegister.email)) {
+    } else if (!validateEmail(dataRegister.email || "")) {
       newErrors.email = "O email é inválido.";
     }
 
     if (!dataRegister.password) {
       newErrors.password = "A senha é obrigatória.";
-    } else if (!validatePassword(dataRegister.password)) {
+    } else if (!validatePassword(dataRegister.password) || "") {
       newErrors.password = "A senha deve ter pelo menos 6 caracteres.";
     }
 

@@ -41,13 +41,14 @@ export default function Profile() {
 
       const data = response.data;
 
-      setFormData({
+      setFormData((prev) => ({
+        ...prev,
         id: data.user?.id,
         name: data.user?.name || "",
         email: data.user?.email || "",
         birth_date: formatDateToInput(data.user?.birth_date),
         gender: data.user?.gender || "",
-      });
+      }));
     } catch (error) {
       console.error("Erro ao buscar dados do usuário:", error);
       toast.error(
