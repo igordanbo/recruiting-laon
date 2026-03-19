@@ -8,6 +8,7 @@ export default function ContainerRightSingleFilm({
   originalTitle,
   year,
   duration,
+  seasons,
   categories,
   sinopsys,
   cast,
@@ -21,25 +22,35 @@ export default function ContainerRightSingleFilm({
   return (
     <div className={` ${styles.container_right_single_film}`}>
       <div className={` ${styles.header_right_single_film}`}>
-        {title && <h1 className="lr_semibold_40">{title}</h1>}
+        <div className={` ${styles.header_right_single_film_content}`}>
+          {title && <h1 className="lr_semibold_40">{title}</h1>}
 
-        {originalTitle && (
-          <span className="lr_regular_16">
-            <strong>Título original:</strong> {originalTitle}
-          </span>
-        )}
+          <div className={` ${styles.header_right_single_film_content_infos}`}>
+            {originalTitle && (
+              <span className="lr_regular_16">
+                <strong>Título original:</strong> {originalTitle}
+              </span>
+            )}
 
-        {year && (
-          <span className="lr_regular_16">
-            <strong>Ano:</strong> {year}
-          </span>
-        )}
+            {year && (
+              <span className="lr_regular_16">
+                <strong>Ano:</strong> {year}
+              </span>
+            )}
 
-        {duration && (
-          <span className="lr_regular_16">
-            <strong>Duração:</strong> {formatDuration(duration)}
-          </span>
-        )}
+            {duration && (
+              <span className="lr_regular_16">
+                <strong>Duração:</strong> {formatDuration(duration)}
+              </span>
+            )}
+
+            {seasons && (
+              <span className="lr_regular_16">
+                <strong>Temporadas:</strong> {seasons}
+              </span>
+            )}
+          </div>
+        </div>
 
         {categories?.length > 0 && (
           <span className={`${styles.container_badges_categories}`}>
@@ -86,7 +97,7 @@ export default function ContainerRightSingleFilm({
       <div className={` ${styles.infos_right_single_film}`}>
         {sinopsys && (
           <div className={` ${styles.box_info_film}`}>
-            <span className={`semibold_16 color_white`}>Sinopse</span>
+            <span className={`lr_semibold_16 color_white`}>Sinopse</span>
             <span className="lr_regular_16 color_gray_500">{sinopsys}</span>
           </div>
         )}
@@ -94,7 +105,7 @@ export default function ContainerRightSingleFilm({
         <div className={` ${styles.grid_infos_right_single_film}`}>
           {cast && (
             <div className={` ${styles.box_info_film}`}>
-              <span className={`semibold_16 color_white`}>Elenco</span>
+              <span className={`lr_semibold_16 color_white`}>Elenco</span>
               {cast?.length > 0 && (
                 <span className={`lr_regular_16 color_gray_500`}>
                   {cast.map((cast) => cast.name).join(", ")}
@@ -105,7 +116,7 @@ export default function ContainerRightSingleFilm({
 
           {awards && (
             <div className={` ${styles.box_info_film}`}>
-              <span className={`semibold_16 color_white`}>Prêmios</span>
+              <span className={`lr_semibold_16 color_white`}>Prêmios</span>
               {awards?.length > 0 && (
                 <span className={`lr_regular_16 color_gray_500`}>
                   {awards.map((award) => award.title).join(", ")}
@@ -118,14 +129,14 @@ export default function ContainerRightSingleFilm({
         <div className={` ${styles.grid_infos_right_single_film}`}>
           {director && (
             <div className={` ${styles.box_info_film}`}>
-              <span className={`semibold_16 color_white`}>Diretor</span>
+              <span className={`lr_semibold_16 color_white`}>Diretor</span>
               <span className="lr_regular_16 color_gray_500">{director}</span>
             </div>
           )}
 
           {ratings?.length > 0 && (
             <div className={styles.box_info_film}>
-              <span className="semibold_16 color_white">Avaliações</span>
+              <span className="lr_semibold_16 color_white">Avaliações</span>
 
               <div className="lr_regular_16 color_gray_500">
                 {ratings.map((rating) => (

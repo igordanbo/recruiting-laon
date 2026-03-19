@@ -108,7 +108,8 @@ export default function SingleSerie() {
           title={serie?.title}
           originalTitle={serie?.original_title}
           year={serie?.year}
-          duration={serie?.duration}
+          duration={null}
+          seasons={serie?.seasons.length}
           categories={serie?.categories}
           sinopsys={serie?.synopsis}
           cast={serie?.actors}
