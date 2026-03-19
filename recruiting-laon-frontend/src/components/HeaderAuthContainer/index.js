@@ -22,7 +22,7 @@ export default function HeaderAuthContainer() {
       {isMobile ? (
         <div className={`${styles.inner_header_container}`}>
           <CircleSvg variant={"back"} onClick={() => navigate("/")} />
-          <SvgLogo size="small" />
+          <SvgLogo size="small" pointer={false} />
           {location.pathname === "/entrar" ? (
             <LrButtonBasic
               text="Cadastrar"

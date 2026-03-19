@@ -166,3 +166,7 @@ span {
 .gap_40 {
   gap: 40px;
 }
+
+.cursor_pointer {
+  cursor: pointer !important;
+}

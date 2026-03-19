@@ -6,7 +6,7 @@ import styles from "./styles.module.css";
 export default function Home() {
   return (
     <section className={`${styles.lr_section_home}`}>
-      <SvgLogo size="medium" />
+      <SvgLogo size="medium" pointer={false} />
 
       <div className={`${styles.lr_section_home_content}`}>
         <span className={`${styles.lr_section_home_badge}`}>

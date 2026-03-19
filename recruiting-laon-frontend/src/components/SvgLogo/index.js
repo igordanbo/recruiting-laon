@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
-export default function SvgLogo({ size = "medium", onClick }) {
+export default function SvgLogo({ size = "medium", onClick, pointer = false }) {
   const sizes = {
     small: { width: 132, height: 40 },
     medium: { width: 264, height: 80 },
@@ -11,7 +11,7 @@ export default function SvgLogo({ size = "medium", onClick }) {
 
   return (
     <svg
-      className={"cursor_pointer"}
+      className={pointer ? "cursor_pointer" : ""}
       onClick={onClick}
       width={width}
       height={height}

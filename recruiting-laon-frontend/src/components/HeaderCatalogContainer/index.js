@@ -94,7 +94,11 @@ export default function HeaderCatalogContainer({
           <>
             {isMobile && (
               <>
-                <SvgLogo size="small" onClick={() => navigate("/catalogo")} />
+                <SvgLogo
+                  size="small"
+                  pointer={true}
+                  onClick={() => navigate("/catalogo")}
+                />
                 <div className={styles.header_catalog_options}>
                   <CircleSvg
                     variant={"search"}
@@ -112,7 +116,11 @@ export default function HeaderCatalogContainer({
 
             {!isMobile && (
               <>
-                <SvgLogo size="small" onClick={() => navigate("/catalogo")} />
+                <SvgLogo
+                  pointer={true}
+                  size="small"
+                  onClick={() => navigate("/catalogo")}
+                />
 
                 <div className={styles.header_catalog_options}>
                   <svg
