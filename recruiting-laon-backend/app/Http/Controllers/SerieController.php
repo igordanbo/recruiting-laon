@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\SerieRequest;
 use App\Models\Serie;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Storage;
 
 class SerieController extends Controller
 {
@@ -52,8 +52,9 @@ class SerieController extends Controller
         $data = $request->validated();
 
         if ($request->hasFile('image')) {
-            $data['image'] = $request->file('image')
-                ->store('series', 'public');
+            $path = $request->file('image')->store('series', 's3');
+
+            $data['image'] = $path;
         }
 
         $serie = Serie::create($data);
@@ -71,14 +72,21 @@ class SerieController extends Controller
         $data = $request->validated();
 
         if ($request->hasFile('image')) {
-            $data['image'] = $request->file('image')
-                ->store('series', 'public');
+
+
+            if ($serie->image) {
+                Storage::disk('s3')->delete($serie->image);
+            }
+
+            $path = $request->file('image')->store('series', 's3');
+
+            $data['image'] = $path;
         }
 
         $serie->update($data);
 
         return response()->json([
-            'message' => 'seriee atualizado.',
+            'message' => 'Série atualizado.',
             'serie' => $serie
         ], 200);
     }
@@ -86,6 +94,10 @@ class SerieController extends Controller
     public function destroy($id_serie)
     {
         $serie = Serie::findOrFail($id_serie);
+        
+        if ($serie->image) {
+            Storage::disk('s3')->delete($serie->image);
+        }
 
         $serie->delete();
 

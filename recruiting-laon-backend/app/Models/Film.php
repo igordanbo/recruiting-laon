@@ -49,8 +49,15 @@ class Film extends Model
 
     public function getImageUrlAttribute()
     {
-        return $this->image
-            ? Storage::url($this->image)
-            : null;
+        if (!$this->image) return null;
+
+        try {
+            return Storage::disk('s3')->temporaryUrl(
+                $this->image,
+                now()->addMinutes(10)
+            );
+        } catch (\Exception $e) {
+            return null;
+        }
     }
 }

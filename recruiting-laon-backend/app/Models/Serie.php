@@ -47,15 +47,22 @@ class Serie extends Model
         return $this->hasMany(AwardsSeries::class);
     }
 
-    public function getImageUrlAttribute()
-    {
-        return $this->image
-            ? Storage::url($this->image)
-            : null;
-    }
-
     public function seasons()
     {
         return $this->hasMany(Season::class);
+    }
+    
+    public function getImageUrlAttribute()
+    {
+        if (!$this->image) return null;
+
+        try {
+            return Storage::disk('s3')->temporaryUrl(
+                $this->image,
+                now()->addMinutes(10)
+            );
+        } catch (\Exception $e) {
+            return null;
+        }
     }
 }

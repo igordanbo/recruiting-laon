@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\FilmRequest;
 use App\Models\Film;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Storage;
 
 class FilmController extends Controller
 {
@@ -13,13 +13,11 @@ class FilmController extends Controller
     {
         $query = Film::with(['categories', 'ratings', 'awards', 'actors']);
 
-        if ($request->filled('limit')) {
-            $limit = $request->limit;
-        } else {
-            $limit = null;
-        }
+        $limit = $request->filled('limit') ? $request->limit : null;
 
-        $query->limit($limit);
+        if ($limit) {
+            $query->limit($limit);
+        }
 
         if ($request->filled('search')) {
             $query->where('title', 'like', '%' . $request->search . '%');
@@ -35,9 +33,7 @@ class FilmController extends Controller
             $query->where('status', $request->status);
         }
 
-        $films = $query
-            ->paginate($limit)
-            ->withQueryString();
+        $films = $query->paginate($limit)->withQueryString();
 
         return response()->json($films);
     }
@@ -55,14 +51,15 @@ class FilmController extends Controller
         $data = $request->validated();
 
         if ($request->hasFile('image')) {
-            $data['image'] = $request->file('image')
-                ->store('films', 'public');
+            $path = $request->file('image')->store('films', 's3');
+
+            $data['image'] = $path;
         }
 
         $film = Film::create($data);
 
         return response()->json([
-            'message' => 'Filme cadastrada',
+            'message' => 'Filme cadastrado',
             'film' => $film
         ], 201);
     }
@@ -74,8 +71,14 @@ class FilmController extends Controller
         $data = $request->validated();
 
         if ($request->hasFile('image')) {
-            $data['image'] = $request->file('image')
-                ->store('films', 'public');
+
+            if ($film->image) {
+                Storage::disk('s3')->delete($film->image);
+            }
+
+            $path = $request->file('image')->store('films', 's3');
+
+            $data['image'] = $path;
         }
 
         $film->update($data);
@@ -89,6 +92,10 @@ class FilmController extends Controller
     public function destroy($id_film)
     {
         $film = Film::findOrFail($id_film);
+
+        if ($film->image) {
+            Storage::disk('s3')->delete($film->image);
+        }
 
         $film->delete();
 
